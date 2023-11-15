@@ -3,7 +3,7 @@
 * :ref:`add`              -- Add a branch to the tree of branch dependencies
 * :ref:`advance`          -- Fast-forward merge one of children to the current branch, push it and then slide out the child
 * :ref:`anno`             -- Manage custom annotations
-* :ref:`clean`            -- Delete untracked and unmanaged branches and also optionally check out user's open GitHub PRs
+* :ref:`clean`            -- Delete untracked branches
 * :ref:`completion`       -- Print out completion script for bash/fish/zsh
 * :ref:`config`           -- Display docs for the git machete configuration keys and environment variables
 * :ref:`delete-unmanaged` -- Delete local branches that are not present in the branch layout file

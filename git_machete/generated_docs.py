@@ -8,7 +8,7 @@ short_docs: Dict[str, str] = {
     "add": "Add a branch to the tree of branch dependencies",
     "advance": "Fast-forward merge one of children to the current branch, push it and then slide out the child",
     "anno": "Manage custom annotations",
-    "clean": "Delete untracked and unmanaged branches and also optionally check out user's open GitHub PRs",
+    "clean": "Delete untracked branches",
     "completion": "Print out completion script for bash/fish/zsh",
     "config": "Display docs for the git machete configuration keys and environment variables",
     "delete-unmanaged": "Delete local branches that are not present in the branch layout file",

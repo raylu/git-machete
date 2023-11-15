@@ -39,7 +39,7 @@ command_groups: List[Tuple[str, List[str]]] = [
     ("Build, display and modify the tree of branch dependencies",
      ["add", "anno", "discover", "edit", "status"]),
     ("List, check out and delete branches",
-     ["delete-unmanaged", "go", "is-managed", "list", "show"]),
+     ["clean", "delete-unmanaged", "go", "is-managed", "list", "show"]),
     ("Determine changes specific to the given branch",
      ["diff", "fork-point", "log"]),
     ("Update git history in accordance with the tree of branch dependencies",
@@ -170,7 +170,6 @@ def create_cli_parser() -> argparse.ArgumentParser:
         usage=argparse.SUPPRESS,
         add_help=False,
         parents=[common_args_parser])
-    clean_parser.add_argument('-H', '--checkout-my-github-prs', action='store_true', default=argparse.SUPPRESS)
     clean_parser.add_argument('-y', '--yes', action='store_true', default=argparse.SUPPRESS)
 
     completion_parser = subparsers.add_parser(
@@ -614,9 +613,6 @@ def launch(orig_args: List[str]) -> None:
                     machete_client.print_annotation(branch)
         elif cmd == "clean":
             machete_client.read_branch_layout_file(perform_interactive_slide_out=should_perform_interactive_slide_out)
-            if 'checkout_my_github_prs' in parsed_cli:
-                machete_client.checkout_github_prs(pr_numbers=[], mine=True)
-            machete_client.delete_unmanaged(opt_yes=cli_opts.opt_yes)
             machete_client.delete_untracked(opt_yes=cli_opts.opt_yes)
         elif cmd == "delete-unmanaged":
             machete_client.read_branch_layout_file(perform_interactive_slide_out=should_perform_interactive_slide_out)

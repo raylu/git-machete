@@ -2741,11 +2741,10 @@ class MacheteClient:
             raise MacheteException('Pull request creation interrupted.')
 
     def delete_untracked(self, opt_yes: bool) -> None:
-        print(bold('Checking for untracked managed branches with no downstream...'))
+        print(bold('Checking for managed branches with missing tracking branches and no downstream...'))
         branches_to_delete: List[LocalBranchShortName] = []
         for branch in self.managed_branches.copy():
-            status, _ = self.__git.get_combined_remote_sync_status(branch)
-            if status == SyncToRemoteStatuses.UNTRACKED and not self.__down_branches.get(branch):
+            if self.__git.is_missing_tracking_branch(branch) and not self.__down_branches.get(branch):
                 branches_to_delete.append(branch)
                 self.managed_branches.remove(branch)
                 if branch in self.__annotations:
